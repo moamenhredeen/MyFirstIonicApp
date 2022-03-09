@@ -1,3 +1,22 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" contentId="mainContent">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons>
+          <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle auto-hide="true">
+          <ion-item routerLink="home">Home Page     </ion-item>
+          <ion-item routerLink="prototype">Prototype</ion-item>
+          <ion-item routerLink="settings">Settings  </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="mainContent" main class="ion-page"></ion-router-outlet>
 </ion-app>
