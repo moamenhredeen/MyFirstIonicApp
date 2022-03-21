@@ -1,0 +1,64 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Todo List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let item of todoItems" [routerLink]="['todoitem', item.id]" class="some-class">
+      <ion-card-header style="color: forestgreen; font-size: 2rem; font-weight: bold">{{item.header}}</ion-card-header>
+      <ion-card-content>{{item.body}}</ion-card-content>
+    </ion-card>
+  </ion-list>
+
+
+  <ion-modal
+    [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header [translucent]="true">
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button (click)="isModalOpen = false">close</ion-button>
+          </ion-buttons>
+          <ion-title>Add New Item</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-item>
+          <ion-label>header</ion-label>
+          <ion-input type="text" [(ngModel)]="header"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>body</ion-label>
+          <ion-input type="text" [(ngModel)]="body"></ion-input>
+        </ion-item>
+        <ion-select placeholder="Status" [(ngModel)]="status">
+          <ion-select-option value=0>TODO</ion-select-option>
+          <ion-select-option value=1>INPROGRESS</ion-select-option>
+          <ion-select-option value=2>DONE</ion-select-option>
+        </ion-select>
+        <ion-select placeholder="Priority" [(ngModel)]="priority">
+          <ion-select-option value=0>HIGH</ion-select-option>
+          <ion-select-option value=1>MEDIUM</ion-select-option>
+          <ion-select-option value=2>LOW</ion-select-option>
+        </ion-select>
+        <ion-button expand="block" (click)="addTodoItem($event)" >ADD</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
+
+<ion-fab class="fab-add" slot="fixed" style="bottom: 10px; right: 10px">
+  <ion-fab-button
+    (click)="isModalOpen = true">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+

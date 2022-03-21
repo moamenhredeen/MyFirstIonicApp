@@ -1,23 +1,26 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, HammerModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HomePageModule} from "./home/home.module";
+import {TodolistModule} from "./todolist/todolist.module";
 import {SettingsPageModule} from "./settings/settings.module";
-import {PrototypeModule} from "./prototype/prototype.module";
+import {GraphicsModule} from "./graphics/graphics.module";
+import {ChatModule} from "./chat/chat.module";
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    HammerModule,
     IonicModule.forRoot(),
-    HomePageModule,
-    PrototypeModule,
+    TodolistModule,
+    GraphicsModule,
+    ChatModule,
     SettingsPageModule,
     AppRoutingModule
   ],

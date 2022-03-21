@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Graphics</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="paperjs">
+        <ion-icon name="shapes-outline"></ion-icon>
+        <ion-label>paperjs</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="fabricjs">
+        <ion-icon name="shapes-outline"></ion-icon>
+        <ion-label>fabricjs</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="konva">
+        <ion-icon name="shapes-outline"></ion-icon>
+        <ion-label>Konva</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
+

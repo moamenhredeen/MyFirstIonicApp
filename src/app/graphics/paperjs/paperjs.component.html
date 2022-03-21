@@ -1,0 +1,115 @@
+<ion-segment (ionChange)="layerChange($event)">
+  <ion-segment-button value="L1">
+    <ion-label>L1</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="L2">
+    <ion-label>L2</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="ALL" checked>
+    <ion-label>ALL</ion-label>
+  </ion-segment-button>
+</ion-segment>
+
+<ion-modal
+  [isOpen]="isModalOpen">
+  <ng-template>
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="isModalOpen = false">close</ion-button>
+        </ion-buttons>
+        <ion-title>Add New Item</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-item>
+        <ion-label>Name</ion-label>
+        <ion-input type="text" name="name" [(ngModel)]="shapeName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Position x</ion-label>
+        <ion-input type="number" name="x" [(ngModel)]="shapeX"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Position y</ion-label>
+        <ion-input type="number" name="y" [(ngModel)]="shapeY"></ion-input>
+      </ion-item>
+
+      <ion-select placeholder="Select Shape" [(ngModel)]="shapeType" (ionChange)="setShape($event)">
+        <ion-select-option value="circle">Circle</ion-select-option>
+        <ion-select-option value="rectangle">Rectangle</ion-select-option>
+      </ion-select>
+
+      <ion-item *ngIf="shape ==='circle'">
+        <ion-label>radius</ion-label>
+        <ion-input type="number" name="radius" [(ngModel)]="shapeRadius"></ion-input>
+      </ion-item>
+      <div *ngIf="shape === 'rectangle'">
+        <ion-item >
+          <ion-label>Width</ion-label>
+          <ion-input type="number" name="width" [(ngModel)]="shapeWidth"></ion-input>
+        </ion-item>
+
+        <ion-item >
+          <ion-label>Height</ion-label>
+          <ion-input type="number" name="height" [(ngModel)]="shapeHeight"></ion-input>
+        </ion-item>
+      </div>
+
+      <ion-item >
+        <ion-label>Color</ion-label>
+        <ion-input type="text" name="color" [(ngModel)]="shapeColor"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="addShape($event)" >ADD</ion-button>
+
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
+
+<ion-modal
+  [isOpen]="isItemModalOpen">
+  <ng-template>
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="isItemModalOpen = false">close</ion-button>
+        </ion-buttons>
+        <ion-title>Add New Item</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-item>
+        <ion-label>color</ion-label>
+        <ion-input type="text" [(ngModel)]="itemColor"></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="changeColor($event)">Change Color</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+    <canvas
+  #canvas
+  resize="true"
+  (pinchout)="zoomin($event)"
+  (pinchin)="zoomout($event)"
+></canvas>
+
+
+<ion-fab class="fab-edit" slot="fixed">
+  <ion-fab-button
+    (click)="editMode = !editMode"
+    color="{{editMode ? 'success': 'light'}}"
+  >
+    <ion-icon name="create-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-fab class="fab-add" slot="fixed">
+  <ion-fab-button
+    (click)="isModalOpen = true">
+    <ion-icon name="add-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
